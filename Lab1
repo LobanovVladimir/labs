@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string a ;
+            double A ;
+            string b ;
+            double B ;
+            string c ;
+            double C;
+            double Discr;
+            double k1;
+            double k2;
+            double i;
+            string otv;
+            int w = 1;
+
+
+            while (w == 1)
+            {
+                while (w == 1)
+                {
+
+                    Console.WriteLine("Введите коэффициенты A, B, C квадратного уравнения типа  Ax^2 + Bx + C = 0, ");
+                    do
+                    {
+                        try
+                        {
+                            a = Console.ReadLine();
+                            A = Convert.ToDouble(a);
+                            b = Console.ReadLine();
+                            B = Convert.ToDouble(b);
+                            c = Console.ReadLine();
+                            C = Convert.ToDouble(c);
+                            break;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Ошибка при вводе данных. Введите коэффиценты A,B и C в чиловом виде. Вот как можно было ошибиться XD");
+                        }
+                    }
+                    while (true);
+
+                    if ((A == 0) && (B == 0) && (C == 0))
+                    {
+                        Console.WriteLine("0=0 Довольно интересная мысль, но всё-таки попробуйте ввести данные от уравнения =)");
+                        break;
+                    }
+
+                    if ((A == 0) && (B == 0))
+                    {
+                        Console.WriteLine("Это что за жуть? Получается число {0}=0, это какая-то жуть, давай по-новой", C);
+                        break;
+                    }
+                    if (A == 0)
+                    {
+                        k1 = -C / B;
+                        Console.WriteLine("Это получается линейное уравнение но я его всё равно решу, я же умная программа, я умею и их решать, вот ответ X={0}", k1);
+                        Console.WriteLine("Ввести корни ещё раз?");
+                        otv = Console.ReadLine();
+                        if (otv == "Нет")
+                            w = 0;
+                        break;
+                    }
+                
+                    Discr = B * B - 4 * A * C;
+
+
+                    if (Discr < 0)
+                    {
+                        Console.WriteLine("Мы учитываем комплексные корни?(Да/Нет)");
+                        string ot = Console.ReadLine();
+                        if (ot == "Да")
+                        {
+                            i = (Math.Sqrt(Math.Abs(Discr)) / (2 * A));
+                            k1 = ((-1) * B) / (2 * A);
+                            k2 = ((-1) * B) / (2 * A);
+                            Console.WriteLine("Первый корень уравнения   {0}+{1}i", k1, i);
+                            Console.WriteLine("Второй корень уравнения   {0}-{1}i", k2, i);
+                            Console.WriteLine("Ввести корни ещё раз?");
+                            otv = Console.ReadLine();
+                            if (otv == "Нет")
+                                w = 0;
+
+                        }
+                        if (ot == "Нет")
+                        {
+                            Console.WriteLine("Уравнение имеет отрицательный дескриминат а значит не имеет корней");
+                            Console.WriteLine("Ввести корни ещё раз?");
+                            otv = Console.ReadLine();
+                            if (otv == "Нет")
+                                w = 0;
+                        }
+                    }
+                    if (Discr == 0)
+                    {
+                        k1 = (-B) / (2 * A);
+                        Console.WriteLine("Уравнение имеет нулевой дескриминант и его корни будут равны {0}", k1);
+                        Console.WriteLine("Ввести корни ещё раз?");
+                        otv = Console.ReadLine();
+                        if (otv == "Нет")
+                            w = 0;
+                    }
+                    if (Discr > 0)
+                    {
+                        k1 = ((-B) + Math.Sqrt(Discr)) / (2 * A);
+                        k2 = ((-B) - Math.Sqrt(Discr)) / (2 * A);
+                        Console.WriteLine("Уравнение имеет корни {0} и {1}", k1, k2);
+                        Console.WriteLine("Ввести корни ещё раз?");
+                        otv = Console.ReadLine();
+                        if (otv == "Нет")
+                            w = 0;
+                    }
+                }
+            }
+            Console.WriteLine("Спасибо за моё использование, я выключусь через 10 секунд, до встречи =)");
+            System.Threading.Thread.Sleep(10000);                     // Пауза (количество секунд * 1000) Нужна для просмотра результата
+        }
+    }
+}
